@@ -12,8 +12,10 @@ if not show_manuf_1k_ads:
     df = df.groupby('manufacturer').filter(lambda x: len(x) > 1000)
 
 st.dataframe(df)
-st.header('Vehicle Types by their Condition')
+st.header('Histogram of Vehicle Types by their Condition')
 st.write(px.histogram(df, x='type', color='condition'))
+
+
 st.header('Bar Chart of `Manufacturer` and the amount of `Days Listed`')
 
 st.bar_chart(df,
@@ -23,11 +25,11 @@ st.bar_chart(df,
                       height=0,
                       use_container_width=True
 )
-st.subheader("Age vs Condition")
+st.subheader("Odometer vs Condition")
 df = pd.read_csv('vehicles_us.csv')
 fig = px.scatter(
     df,
-    x="condition",
+    x="odometer",
     y="car_age",
     color="car_age",
     color_continuous_scale="reds",
